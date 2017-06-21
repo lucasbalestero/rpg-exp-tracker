@@ -48,6 +48,7 @@ function formatDate(date){
 }
 
 
+//Call calExp() when Enter key is pressed
 document.getElementById("current-exp")
     .addEventListener("keypress", function(event) {
     if (event.keyCode == 13) {
