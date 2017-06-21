@@ -2,13 +2,18 @@
   <title>RPG Exp Tracker</title>
 	<link href="css/bootstrap.min.css" rel="stylesheet">
   <body>
-    <div>
-      <p><input type="number" placeholder="Current exp" id="current-exp" autofocus />
-      <button class="btn-primary" id="input_exp" onclick="calcExp()">Calc</button></p>
-    </div>
 
     <div>
-      <ul id="exp-history"></ul>
+      <p>
+				<input type="number" placeholder="Current exp" id="current-exp" autofocus />
+      	<button class="btn-primary" id="input_exp" onclick="calcExp()">Calc</button>
+				<span id="exp-per-min"></span>
+			</p>
+    </div>
+
+		
+	 	<div class="well" style="max-height: 400px;overflow: auto;">
+      <ul class="list-group" id="exp-history"></ul>
     </div>
 
     <script src="js/main.js"></script>
