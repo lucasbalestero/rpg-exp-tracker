@@ -10,9 +10,28 @@ function calcExp(){
 
 function addToList(currentExp){
   var obj = {exp:currentExp, date: Date.now()};
-  expList.push(obj);
-  expHistory.innerHTML += "<li>"+currentExp+" - "+ formatDate(obj.date) +"</li>";
+
+	var lastRecord = getLastRecord();
+
+	if(lastRecord === undefined){
+		expList.push(obj);
+		expHistory.innerHTML += "<li>"+currentExp+" - "+ formatDate(obj.date) +"</li>";
+	}else{
+
+		var timeLapsed = Date.now() - lastRecord.date;
+		timeLapsed = timeLapsed / 1000;
+	
+		var expAcquired = currentExp - lastRecord.exp;
+
+		expList.push(obj);
+		expHistory.innerHTML += "<li>"+currentExp+" - "+ formatDate(obj.date) +
+			"&nbsp; - <b>Exp:</b>"+expAcquired+"&nbsp; <b>in</b> "+ timeLapsed+"</li>";
+	}
   console.log(expList);
+}
+
+function getLastRecord(){
+	return expList[expList.length-1];
 }
 
 
@@ -28,3 +47,10 @@ function formatDate(date){
 	return dateString;
 }
 
+
+document.getElementById("current-exp")
+    .addEventListener("keypress", function(event) {
+    if (event.keyCode == 13) {
+				calcExp();
+    }
+});
